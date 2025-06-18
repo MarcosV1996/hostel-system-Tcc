@@ -1,11 +1,10 @@
 services:
   backend:
-    build:
-      context: ./backend 
+    build: ./appointment-backend
     container_name: backend
     volumes:
-      - ./backend:/var/www/html 
-      - sqlite_data:/var/www/html/database 
+      - ./appointment-backend:/var/www/html
+      - /home/marcos/Vídeos/agendamento-acolhidos/appointment-backend/database/database.sqlite:/var/www/html/database/database.sqlite:rw
     ports:
       - "8000:8000"
     networks:
@@ -16,22 +15,25 @@ services:
       - APP_DEBUG=true
     command: >
       sh -c "php artisan storage:link &&
-             chown -R www-data:www-data storage &&
-             chmod -R 775 storage &&
-             php artisan serve --host=0.0.0.0 --port=8000"
+            chown -R www-data:www-data storage &&
+            chmod -R 775 storage &&
+            php artisan serve --host=0.0.0.0 --port=8000"
     working_dir: /var/www/html
     tty: true
     stdin_open: true
 
   frontend:
     build:
-      context: ./frontend 
+      context: ./appointment-frontend
       dockerfile: Dockerfile
     container_name: frontend
     ports:
       - "8080:80"
     volumes:
-      - ./frontend/dist/agendamento-acolhidos:/usr/share/nginx/html 
+      # Mapeia o diretório 'dist/agendamento-acolhidos' do seu host
+      # para o diretório de serviço do Nginx dentro do contêiner.
+      # Certifique-se de que 'agendamento-acolhidos' é o nome da subpasta gerada pelo 'ng build'.
+      - ./appointment-frontend/dist/agendamento-acolhidos:/usr/share/nginx/html
     depends_on:
       - backend
     networks:
@@ -46,9 +48,5 @@ services:
 
 networks:
   app-network:
+    name: app-network
     driver: bridge
-
-volumes:
-  sqlite_data:
-    driver: local
-
