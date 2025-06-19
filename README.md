@@ -1,50 +1,38 @@
-# Sistema de Agendamento para Albergue Noturno (TCC)
+# Sistema de Gerenciamento de Vagas em Albergues (Backend - Laravel)
 
-Este é o repositório principal e orquestrador do projeto de TCC, que implementa um sistema de agendamento completo utilizando uma arquitetura desacoplada com Frontend (Angular) e Backend (Laravel), containerizada com Docker.
+[![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com/)
+[![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/index.html)
 
-## Arquitetura
-
-O projeto foi estruturado em múltiplos repositórios para simular um ambiente de desenvolvimento profissional, seguindo práticas de microsserviços.
-
--   **Frontend:** Repositório contendo a aplicação Angular.
--   **Backend:** Repositório contendo a API em Laravel.
--   **Orquestrador (Este repositório):** Utiliza `git submodules` para unificar os serviços e o `docker-compose.yml` para configurar e executar o ambiente completo.
-
-## Tecnologias Utilizadas
-
--   **Backend:** Laravel, PHP, SQLite
--   **Frontend:** Angular, TypeScript, Bootstrap
--   **Containerização:** Docker, Docker Compose
-
-## Como Executar a Aplicação
-
-**Pré-requisitos:**
-* Git
-* Docker
-* Docker Compose
-
-Com apenas 3 comandos no terminal, todo o ambiente será configurado e executado.
-
-**1. Clone este repositório (orquestrador) com seus submódulos:**
-   A flag `--recurse-submodules` é essencial para baixar o código do frontend e do backend junto.
-   ```bash
-   git clone --recurse-submodules [https://github.com/MarcosV1996/hostel-system-Tcc.git](https://github.com/MarcosV1996/hostel-system-Tcc.git)
-   ```
-
-**2. Entre na pasta do projeto:**
-   ```bash
-   cd hostel-system-Tcc
-   ```
-
-**3. Inicie os containers com Docker Compose:**
-   O comando `--build` permite que as imagens Docker serão construídas a partir do zero.
-   ```bash
-   docker-compose up -d --build
-   ```
-
-Após a execução, a aplicação estará disponível nos seguintes endereços:
-
--   **Aplicação Frontend:** `http://localhost:8080`
--   **API Backend:** `http://localhost:8000`
+Este é o **backend do sistema de agendamento de vagas para pessoas em situação de vulnerabilidade social**, desenvolvido em **Laravel**. Ele atua como a API RESTful que suporta o frontend (desenvolvido em Angular 17), sendo uma parte crucial do Trabalho de Conclusão de Curso em Tecnologia em Sistemas para Internet pela UTFPR.
 
 ---
+
+## Contexto do Projeto: Otimizando a Gestão de Albergues
+
+Este projeto foi concebido para **substituir o sistema manual, baseado em planilhas Excel**, utilizado pelo Albergue Noturno de Guarapuava. O backend é o coração da modernização, visando:
+
+* **Centralizar e gerenciar** todas as informações de agendamentos e acolhidos.
+* **Fornecer uma API robusta** para o frontend e futuras integrações.
+* **Automatizar a geração de relatórios** e a gestão de dados.
+* **Garantir a segurança e integridade** das informações do sistema.
+
+---
+
+## Stack Tecnológica
+
+#### Backend:
+
+* **Laravel 11**: O framework PHP robusto para construir a API RESTful.
+* **PHP 8.2+**: A linguagem de programação que sustenta o Laravel.
+* **SQLite**: Banco de dados leve  para desenvolvimento e produção, facilitando a portabilidade.
+* **Laravel Sanctum**: Para autenticação e autorização via API Tokens.
+
+#### Frontend:
+
+* **Angular 17**: Interface de usuário que consome esta API.
+
+#### Infraestrutura:
+
+* **Docker**: Containerização das aplicações, para  ambientes isolados e consistentes.
+* **Docker Compose**: Orquestração dos containers para facilitar o deploy e gerenciamento do ambiente de desenvolvimento.
+

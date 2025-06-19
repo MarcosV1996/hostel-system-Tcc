@@ -1,10 +1,10 @@
 services:
   backend:
-    build: ./appointment-backend
+    build: ./backend
     container_name: backend
     volumes:
-      - ./appointment-backend:/var/www/html
-      - /home/marcos/Vídeos/agendamento-acolhidos/appointment-backend/database/database.sqlite:/var/www/html/database/database.sqlite:rw
+      - ./backend:/var/www/html
+      - /home/marcos/Vídeos/hostel-system-Tcc/backend/database/database.sqlite:/var/www/html/database/database.sqlite:rw
     ports:
       - "8000:8000"
     networks:
@@ -24,7 +24,7 @@ services:
 
   frontend:
     build:
-      context: ./appointment-frontend
+      context: ./frontend
       dockerfile: Dockerfile
     container_name: frontend
     ports:
@@ -33,7 +33,7 @@ services:
       # Mapeia o diretório 'dist/agendamento-acolhidos' do seu host
       # para o diretório de serviço do Nginx dentro do contêiner.
       # Certifique-se de que 'agendamento-acolhidos' é o nome da subpasta gerada pelo 'ng build'.
-      - ./appointment-frontend/dist/agendamento-acolhidos:/usr/share/nginx/html
+      - ./frontend/dist/hostel-system-Tcc:/usr/share/nginx/html
     depends_on:
       - backend
     networks:
